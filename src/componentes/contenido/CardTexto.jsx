@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { instance } from '../../config/axiosapi';
+// import { instance } from '../../config/axiosapi';
 
 function CardTexto({ setChatGPTResponse }) {
     const [inputUsuario, setInputUsuario] = useState(""); // camel case, snake case, pascal case
@@ -12,10 +12,11 @@ function CardTexto({ setChatGPTResponse }) {
 
     const handleClick = async (param) => {
         try {
-            const axiosResponse = await instance.get(`/gpt/${param}?prompt=${inputUsuario}`);
-            const serverResponse = axiosResponse.data;
-            console.log('serverResponse', serverResponse)
-            setChatGPTResponse(serverResponse);
+            // const axiosResponse = await instance.get(`/gpt/${param}?prompt=${inputUsuario}`);
+            const response = await fetch(`https://alquilarya.up.railway.app/api/gpt/${param}?prompt=${inputUsuario}`);
+            const json = await response.json();
+            console.log('json', json);            
+            setChatGPTResponse(json.text);
         } catch(err) {
             console.log(err);
         }

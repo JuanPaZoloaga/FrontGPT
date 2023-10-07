@@ -9,7 +9,7 @@ function CardGPT({ chatGPTResponse }) {
         <div className='card w-50'> 
             
             <header style={{color:"white"}}>Chat_GPT</header>
-            <textarea value={chatGPTResponse.text} disabled name="" id="" cols="30" rows="10">
+            <textarea value={chatGPTResponse} disabled name="" id="" cols="30" rows="10">
                 
             </textarea>
         </div>

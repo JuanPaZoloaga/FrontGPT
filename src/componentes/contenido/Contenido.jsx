@@ -7,8 +7,6 @@ import CardGPT from './CardGPT';
 function Contenido() {
     const [chatGPTResponse, setChatGPTResponse] = useState('');
 
-    console.log(chatGPTResponse);
-
     return (
         <div className='container'>            
             <CardTexto setChatGPTResponse={setChatGPTResponse} />
