@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-console.log(process.env.REACT_APP_API_KEY_GPT);
-
 function CardTexto({ setChatGPTResponse }) {
   const [inputUsuario, setInputUsuario] = useState(""); // camel case, snake case, pascal case
+
+  //   console.log(process.env.REACT_APP_API_KEY_GPT);
+  //   console.log(REACT_APP_API_KEY_GPT);
 
   function changeinput(event) {
     const input = event.target.value;
@@ -11,6 +12,15 @@ function CardTexto({ setChatGPTResponse }) {
   }
 
   const handleClick = async (param) => {
+    if (param === 4) {
+      const response = await fetch(
+        `https://alquilarya.up.railway.app/api/probe`
+      );
+      const json = await response.json();
+      console.log("json front console.log", json);
+      setChatGPTResponse(json);
+    }
+
     try {
       // const axiosResponse = await instance.get(`/gpt/${param}?prompt=${inputUsuario}`);
       const response = await fetch(
@@ -49,6 +59,9 @@ function CardTexto({ setChatGPTResponse }) {
         </button>
         <button onClick={() => handleClick(3)} className="btn btn-primary">
           Finalizar....
+        </button>
+        <button onClick={() => handleClick(4)} className="btn btn-primary">
+          PROBE
         </button>
       </div>
     </div>
